@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Eventos</title>
+</head>
+<body>
+<h2>Registro de Eventos Musicales</h2>
+<form action="RegistroEventosServlet" method="post">
+    <label for="nombreEvento">Nombre del Evento:</label>
+    <input type="text" id="nombreEvento" name="nombreEvento" required><br>
+
+    <label for="fecha">Fecha del Evento:</label>
+    <input type="date" id="fecha" name="fecha" required><br>
+
+    <label for="lugar">Lugar del Evento:</label>
+    <input type="text" id="lugar" name="lugar" required><br>
+
+    <input type="submit" value="Registrar Evento">
+</form>
+
+</body>
+</html>

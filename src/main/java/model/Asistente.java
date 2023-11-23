@@ -7,82 +7,77 @@ public class Asistente {
     private String numeroTelefono;
     private String preferenciasMusicales;
     private List<EventoMusical> eventosAsistidos;
-
-    // Constructor
+    private List<Entrada> compras;
     public Asistente(String nombre, String correoElectronico, String numeroTelefono, String preferenciasMusicales) {
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
         this.numeroTelefono = numeroTelefono;
         this.preferenciasMusicales = preferenciasMusicales;
         this.eventosAsistidos = new ArrayList<>();
+        this.compras = new ArrayList<>();
     }
-
-    // Métodos de acceso (getters y setters)
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getCorreoElectronico() {
         return correoElectronico;
     }
-
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
-
     public String getNumeroTelefono() {
         return numeroTelefono;
     }
-
     public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
-
     public String getPreferenciasMusicales() {
         return preferenciasMusicales;
     }
-
     public void setPreferenciasMusicales(String preferenciasMusicales) {
         this.preferenciasMusicales = preferenciasMusicales;
     }
-
     public List<EventoMusical> getEventosAsistidos() {
         return eventosAsistidos;
     }
-
     public void setEventosAsistidos(List<EventoMusical> eventosAsistidos) {
         this.eventosAsistidos = eventosAsistidos;
     }
-
-    // Método para agregar un evento asistido por el asistente
-    public void agregarEventoAsistido(EventoMusical evento) {
-        if (!eventosAsistidos.contains(evento)) {
-            eventosAsistidos.add(evento);
-            evento.agregarAsistente(this);
+    public List<Entrada> getCompras() {
+        return compras;
+    }
+    public void setCompras(List<Entrada> compras) {
+        this.compras = compras;
+    }
+    public void comprarEntrada(Entrada entrada, int cantidad) {
+        if (entrada.getCantidadDisponible() >= cantidad) {
+            for (int i = 0; i < cantidad; i++) {
+                compras.add(entrada);
+            }
+            entrada.comprarEntrada(cantidad);
+        } else {
+            System.out.println("Lo siento, no hay suficientes entradas disponibles.");
         }
     }
-
-    // Método para eliminar un evento asistido por el asistente
+    public void cancelarCompraEntrada(Entrada entrada, int cantidad) {
+        if (compras.contains(entrada)) {
+            for (int i = 0; i < cantidad; i++) {
+                compras.remove(entrada);
+            }
+            entrada.anularEntrada(cantidad);
+        } else {
+            System.out.println("No se encontró la compra asociada a la entrada.");
+        }
+    }
+    public void agregarEventoAsistido(EventoMusical evento) {
+        eventosAsistidos.add(evento);
+    }
     public void eliminarEventoAsistido(EventoMusical evento) {
         eventosAsistidos.remove(evento);
-        evento.eliminarAsistente(this);
     }
-
-    // Método para darse de baja en el sistema
-    public void darseDeBaja() {
-        // Eliminar la relación con los eventos al darse de baja
-        for (EventoMusical evento : eventosAsistidos) {
-            evento.eliminarAsistente(this);
-        }
-        eventosAsistidos.clear();
-        // Otras acciones de baja, si es necesario
-    }
-
-    // Método toString para obtener una representación de cadena del objeto
     @Override
     public String toString() {
         return "Asistente{" +
@@ -90,7 +85,8 @@ public class Asistente {
                 ", correoElectronico='" + correoElectronico + '\'' +
                 ", numeroTelefono='" + numeroTelefono + '\'' +
                 ", preferenciasMusicales='" + preferenciasMusicales + '\'' +
-                ", eventosAsistidos=" + eventosAsistidos +
+                ", compras=" + compras +
                 '}';
     }
 }
+

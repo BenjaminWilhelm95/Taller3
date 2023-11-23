@@ -27,7 +27,7 @@ public class VentaEntradasServlet extends HttpServlet {
         } else {
             System.out.println("Evento no encontrado.");
         }
-        response.sendRedirect("paginaDeConfirmacion.jsp");
+        response.sendRedirect("paginaConfirmacion.jsp");
     }
     private EventoMusical buscarEventoPorNombre(String nombreEvento) {
         return null;

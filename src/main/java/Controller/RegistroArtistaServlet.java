@@ -1,4 +1,18 @@
 package Controller;
-
-public class RegistroArtistaServlet {
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Artista;
+@WebServlet("/RegistroArtistaServlet")
+public class RegistroArtistaServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombreArtistico = request.getParameter("nombreArtistico");
+        String generoMusical = request.getParameter("generoMusical");
+        Artista artista = new Artista(nombreArtistico, generoMusical);
+        response.sendRedirect("confirmacionArtista.jsp");
+    }
 }

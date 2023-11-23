@@ -13,7 +13,6 @@ import model.EventoMusical;
 public class RegistroEventosServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Obtener datos de la solicitud
         String nombreEvento = request.getParameter("nombreEvento");
         String fechaStr = request.getParameter("fecha");
         String lugar = request.getParameter("lugar");
@@ -25,6 +24,6 @@ public class RegistroEventosServlet extends HttpServlet {
             e.printStackTrace();
         }
         EventoMusical evento = new EventoMusical(nombreEvento, fecha, lugar);
-        response.sendRedirect("PaginaConfirmacion.jsp");  // Reemplaza con la página que desees
+        response.sendRedirect("PaginaConfirmacion.jsp");
     }
 }

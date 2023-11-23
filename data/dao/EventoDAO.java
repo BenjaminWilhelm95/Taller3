@@ -19,9 +19,12 @@ public class EventoDAO {
                 .execute();
     }
 
+    public void cancelarEvento(int idEvento) {
+        dsl.deleteFrom(table("EventoDAO")).where(field("id").eq(idEvento)).execute();
+    }
+
     public Result<Record> obtenerTodosLosEventos() {
         return dsl.select().from(table("EventoDAO")).fetch();
     }
-
 }
 

@@ -13,7 +13,7 @@ public class AsistenteDAO {
         this.dsl = dsl;
     }
 
-    public void insertarAsistente(String nombre, String correo, String telefono, String preferenciasMusicales) {
+    public void registrarAsistente(String nombre, String correo, String telefono, String preferenciasMusicales) {
         dsl.insertInto(table("AsistenteDAO"), field("nombre"), field("correo"), field("telefono"), field("preferencias_musicales"))
                 .values(nombre, correo, telefono, preferenciasMusicales)
                 .execute();
@@ -22,5 +22,5 @@ public class AsistenteDAO {
     public Result<Record> obtenerTodosLosAsistentes() {
         return dsl.select().from(table("AsistenteDAO")).fetch();
     }
-
 }
+

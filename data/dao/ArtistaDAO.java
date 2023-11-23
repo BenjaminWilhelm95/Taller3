@@ -22,5 +22,4 @@ public class ArtistaDAO {
     public Result<Record> obtenerTodosLosArtistas() {
         return dsl.select().from(table("ArtistaDAO")).fetch();
     }
-
 }
